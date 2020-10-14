@@ -1,23 +1,25 @@
 import tactJs from 'tact-js';
 
 const btn_test = document.getElementById("test");
+const btn_multitest = document.getElementById("multitest");
+
 var key = 'dot';
 var position = 'ForearmL';
 var points = [
   {
     index: 0,
-    intensity: 100
+    intensity: 50
   },
   {
     index: 1,
-    intensity: 100
+    intensity: 50
   },
   {
     index: 2,
-    intensity: 100
+    intensity: 50
   }
 ];
-var durationMillis = 1000;
+var durationMillis = 200;
 
 tactJs.addListener(function(msg) {
     if (msg.status === 'Connected') {
@@ -30,9 +32,17 @@ tactJs.addListener(function(msg) {
 });
 
 btn_test.addEventListener("click", test);
-
+btn_multitest.addEventListener("click", multitest);
 
 //errorcodes: 0 - success, 2 - connection not established
 function test() {
   console.log(tactJs.submitDot(key, position, points, durationMillis));
+}
+
+function multitest() {
+  // for (var i = 0; i < 3; i++) {
+  //   setTimeout(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, 1000);
+  // }
+  var interval = setInterval(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, 1000);
+  setTimeout(() => {clearInterval(interval)}, 4000);
 }
