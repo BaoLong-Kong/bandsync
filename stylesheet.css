@@ -1,0 +1,174 @@
+html {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: black;
+    color: white;
+}
+header{
+    text-align: center;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+a:focus,
+h1:focus{
+    outline: none;
+}
+
+h1 {
+    text-transform: uppercase;
+    display: inline-block;
+    letter-spacing: 1.5;
+}
+
+a {
+   text-decoration: none;
+}
+
+div {
+    position: relative;
+}
+
+input {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+i { 
+    position: relative;
+    font-style: normal;
+    font-family: 'FontAwesome', sans-serif !important;
+    font-weight: normal !important;
+    font-size: 16pt;
+    margin: 10px;
+}
+
+.close {
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    z-index: 5;
+}
+
+label {
+    display: inline-block;
+    width: 50%;
+}
+
+.btn {
+    color: white !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 1.5;
+    display: block;
+    width: 300px;
+    padding:20px;
+    font-size: 18px;
+    font-weight: 600;
+    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    cursor: pointer;
+    margin: 20px 0;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn:hover {
+    background-position: 50% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn-border{
+    background: none;
+    box-shadow:inset 0px 0px 0px 3px #667eea;
+    color: #667eea !important;
+}
+
+.btn-border:hover{
+    box-shadow:inset 0px 0px 0px 3px #9466ea;
+    color: #9466ea !important;
+}
+
+.plus {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    font-size: 150%;
+    margin-left: 0;
+    background-color: #667eea;
+    background-image: none;
+}
+.plus:hover{
+    background-color: #9466ea;
+}
+
+.instrument{
+    color: gray;
+    text-transform: uppercase;
+    letter-spacing: 1.2;
+    font-size: 12pt;
+    float: left;
+    margin-right: 10px;
+    padding: 20px 20px 40px;
+    background: #3e3e3e;
+    border-radius: 20px 20px 0 0;
+    cursor: pointer;
+}
+
+.instrument-box{
+    padding-top: 15px;
+    background: #222222;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.instrument.active {
+    background: #222222;
+    color: white;
+  }
+
+.tab {
+    display: none;
+}
+.tab.active{
+    display: block;
+}
+.edit{
+    cursor: pointer;
+}
+
+.phase{
+    margin-top: 10px;
+    margin-bottom:10px;
+    padding:  15px 20px;
+    background-image: linear-gradient(to right, #667eea, #8E37D7);
+    border-radius: 20px;
+}
+.time{
+    width: 49%;
+    max-width: 120px;
+}
+
+.tact, .tempo{
+    width: 53px;
+}

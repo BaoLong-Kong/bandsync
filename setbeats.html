@@ -1,0 +1,173 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>set_beats</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="project_name" class="edit" style="cursor: pointer;" contenteditable="true" onfocus="this.select();">
+            Project Name</h1>
+        <!--i class="fas fa-pencil" onclick="edit('project_name')"></i-->
+    </header>
+    <div style="height:60px">
+        <div class="bar">
+            <a class="instrument active" id="instrument1" contenteditable="true" onclick="openTab(this, 'tab1')"
+                onfocus="this.select();" onclick="edit('instrument1')">Instrument 1
+                <!--i class="fas fa-pencil" class="edit" onCLick="edit(instrument1)"></i--></a>
+            <a class="instrument" id="instrument2" contenteditable="true" style="display: none;"
+                onclick="openTab(this, 'tab2')">Instrument 2
+            </a>
+            <a class="instrument" id="instrument3" contenteditable="true" style="display: none; "
+                onclick="openTab(this, 'tab2')">Instrument 3
+            </a>
+
+        </div>
+        <button class="btn plus" id="add_phase" style="margin: 0; float: right;" onClick="add_instrument()"><i
+                class="fas fa-plus"></i></button>
+    </div>
+    <div id=tab1 class="tab" style="display: block;">
+        <div class="instrument-box">
+            <div class="phase" id="phase1">
+                <i class="fas fa-times close" onClick="delete_row(this)"></i>
+                <div>
+                    <label for="start_time">Start Time:</label>
+                    <input class="time" name="start_time" id="start_time0" type="time" step='1' min="00:00"
+                        max="02:00:00" value="00:00:00" required>
+                </div>
+                <div>
+                    <label for="end_time">End Time:</label>
+                    <input class="time" name="end_time" id="end_time0" type="time" step='1' min="00:00" max="02:00:00"
+                        value="00:00:00">
+                </div>
+                <div>
+                    <label for="tact">Tact:</label>
+                    <input class="tact" name="tact" id="tact00" type="number" min="1" max="12"> /
+                    <input class="tact" name="tact" id="tact01" type="number" min="2" max="16">
+                </div>
+                <div>
+                    <label for="tempo">Tempo:</label>
+                    <input class="tempo" name="tempo" id="tact0" type="number" min="50" max="150"> bpm
+                </div>
+            </div>
+            <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
+        </div>
+    </div>
+    <div id=tab2 class="tab" style="display: none;">
+        <div class="instrument-box">
+            <div class="phase" id="phase1">
+                <i class="fas fa-times close" onClick="delete_row(this)"></i>
+                <div>
+                    <label for="start_time">Start Time:</label>
+                    <input class="time" name="start_time" id="start_time0" type="time" step='1' min="00:00"
+                        max="02:00:00" value="00:00:00" required>
+                </div>
+                <div>
+                    <label for="end_time">End Time:</label>
+                    <input class="time" name="end_time" id="end_time0" type="time" step='1' min="00:00" max="02:00:00"
+                        value="00:00:00">
+                </div>
+                <div>
+                    <label for="tact">Tact:</label>
+                    <input class="tact" name="tact" id="tact00" type="number" min="1" max="12"> /
+                    <input class="tact" name="tact" id="tact01" type="number" min="2" max="16">
+                </div>
+                <div>
+                    <label for="tempo">Tempo:</label>
+                    <input class="tempo" name="tempo" id="tact0" type="number" min="50" max="150"> bpm
+                </div>
+            </div>
+            <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
+        </div>
+    </div>
+    <div id=tab3 class="tab" style="display: none;">
+        <div class="instrument-box">
+            <div class="phase" id="phase1">
+                <i class="fas fa-times close" onClick="delete_row(this)"></i>
+                <div>
+                    <label for="start_time">Start Time:</label>
+                    <input class="time" name="start_time" id="start_time0" type="time" step='1' min="00:00"
+                        max="02:00:00" value="00:00:00" required>
+                </div>
+                <div>
+                    <label for="end_time">End Time:</label>
+                    <input class="time" name="end_time" id="end_time0" type="time" step='1' min="00:00" max="02:00:00"
+                        value="00:00:00">
+                </div>
+                <div>
+                    <label for="tact">Tact:</label>
+                    <input class="tact" name="tact" id="tact00" type="number" min="1" max="12"> /
+                    <input class="tact" name="tact" id="tact01" type="number" min="2" max="16">
+                </div>
+                <div>
+                    <label for="tempo">Tempo:</label>
+                    <input class="tempo" name="tempo" id="tact0" type="number" min="50" max="150"> bpm
+                </div>
+            </div>
+            <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
+        </div>
+    </div>
+
+    </div>
+    <a class="btn btn-border" href="#" id="save" style="float:left; margin-left:0; width:42%">Save <i
+            class="fas fa-folder"></i></a>
+    <a class="btn" href="#" id="start" style="float:right; margin-right:0; width:42%">Start <i
+            class="fas fa-chevron-right"></i></a>
+</body>
+
+<script>
+    var i = 1;
+
+    function add_instrument() {
+        if (document.getElementById("instrument2").style.display == "none")
+            document.getElementById("instrument2").style.display = "block"
+        else document.getElementById("instrument3").style.display = "block"
+    }
+
+    function duplicate(e) {
+        console.log("duplicate")
+        var original = e.parentElement.firstElementChild
+        console.log(original)
+        var clone = original.cloneNode(true); // "deep" clone
+        clone.id = "phase" + ++i; // there can only be one element with an ID
+        //clone.onclick = duplicate; // event handlers are not cloned
+        original.parentNode.insertBefore(clone, e);
+    }
+
+    function delete_row(e) {
+
+        console.log(e.parentNode.id)
+        if (e.parentNode.id != "phase1") {
+            e.parentNode.parentNode.removeChild(e.parentNode);
+            i--;
+        }
+    }
+
+    function edit(e) {
+
+        document.getElementById(e).focus();
+    }
+
+    function openTab(evt, instrument) {
+        console.log("tab")
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("instrument");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+            tablinks[i].contenteditable = "false";
+        }
+        document.getElementById(instrument).style.display = "block";
+        evt.className += " active";
+        evt.contenteditable = "true";
+    }
+</script>
+
+</html>

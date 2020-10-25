@@ -1,15 +1,24 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bhaptics_test</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
-<body>
+
+<body style="width: 350px; margin: auto;">
+    <header>
+        <h1>Bandsync</h1>
+    </header>
     <div>
-        <button id="test">Test</button>
-    </div>
-    <div>
-        <button id="multitest">Multi-Test</button>
+        <label for="files" class="btn" id="upload"><i class="fas fa-upload"></i> Upload File</label>
+        <input id="files" style="display:none;" type="file">
+        <a class="btn" href="setbeats.html" id="set"><i class="fas fa-music"></i> Set Beats</a>
+        <a class="btn" href="projects.html" id="projects"><i class="fas fa-history"></i> Last Projects</a>
+        <a class="btn" href="settings.html" id="projects"><i class="fas fa-cog"></i> Settings</a>
     </div>
 </body>
+
 </html>
