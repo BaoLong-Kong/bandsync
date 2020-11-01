@@ -14,6 +14,16 @@
             Project Name</h1>
         <!--i class="fas fa-pencil" onclick="edit('project_name')"></i-->
     </header>
+    <div style="height:120px">
+        <input type="file" id="music-file" class="file" accept="audio/mp3, audio/wav" onChange="load_audio(this)">
+        <label for="music-file" class="btn" style="float:left; margin-left:0; width:42%">
+            <i class="fas fa-music"></i>
+            Select Music File <p id="music-file-name" class="file-name"></p> </label>
+        <input type="file" id="counter-file" class="file">
+        <label for="counter-file" class="btn" style="float:right; margin-right:0; width:42%">
+            <i class="far fa-file"></i>
+            Select Counter File <p id="counter-file-name" class="file-name"></p> </label>
+    </div>
     <div style="height:60px">
         <div class="bar">
             <a class="instrument active" id="instrument1" contenteditable="true" onclick="openTab(this, 'tab1')"
@@ -115,8 +125,9 @@
     </div>
     <a class="btn btn-border" href="#" id="save" style="float:left; margin-left:0; width:42%">Save <i
             class="fas fa-folder"></i></a>
-    <a class="btn" href="#" id="start" style="float:right; margin-right:0; width:42%">Start <i
+    <a class="btn" href="#" id="start" onClick="play()" style="float:right; margin-right:0; width:42%">Start <i
             class="fas fa-chevron-right"></i></a>
+    <audio id="player" controls></audio>
 </body>
 
 <script>
@@ -167,6 +178,42 @@
         document.getElementById(instrument).style.display = "block";
         evt.className += " active";
         evt.contenteditable = "true";
+    }
+
+    const musicfile = document.getElementById("music-file");
+    musicfile.addEventListener('change', (e) => {
+        // Get the selected file
+        const [musicfile] = e.target.files;
+        // Get the file name and size
+        const { name: fileName, size } = musicfile;
+        // Convert size in bytes to kilo bytes
+        const fileSize = (size / 1000).toFixed(2);
+        // Set the text content
+        const fileNameAndSize = `${fileName} - ${fileSize}KB`;
+        document.getElementById('music-file-name').textContent = fileNameAndSize;
+    });
+
+    const file = document.getElementById("counter-file");
+    file.addEventListener('change', (e) => {
+        const [file] = e.target.files;
+        const { name: fileName, size } = file;
+        const fileSize = (size / 1000).toFixed(2);
+        const fileNameAndSize = `${fileName} - ${fileSize}KB`;
+        document.getElementById('counter-file-name').textContent = fileNameAndSize;
+    });
+
+    function load_audio(e) {
+        var player = document.getElementById('player');
+        var audio = document.getElementById('music-file');
+        player.src = URL.createObjectURL(e.files[0]);
+    }
+
+    function play() {
+        if (document.getElementById("music-file").files[0]) {
+            var player = document.getElementById('player');
+            player.style.display = "block";
+            player.play();
+        }
     }
 </script>
 
