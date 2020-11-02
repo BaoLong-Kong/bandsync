@@ -1,0 +1,22 @@
+{
+	"track_name": "Musikstück",
+	"track_artist": "Jannik Schmied",
+	"length": 140,
+	"tempo": 120,
+	"beat": [4, 8],
+	"key": "Dm",
+	"instruments": [
+		{
+			"insturment_id": 1,
+			"insturment_description": "Strings",
+			"ins": [[1, 1], [31, 1], [91, 1]],
+			"outs": [[16, 1], [79, 1], [94, 1]]
+		},
+		{
+			"insturment_id": 2,
+			"insturment_description": "Guitar",
+			"ins": [[94, 1], [101, 4], [91, 1]],
+			"outs": [[99, 4], [106, 2], [119, 4]]
+		}
+	]
+}

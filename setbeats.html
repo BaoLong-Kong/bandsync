@@ -42,22 +42,22 @@
     </div>
     <div id=tab1 class="tab" style="display: block;">
         <div class="instrument-box">
-            <div class="phase" id="phase1">
+            <div class="phase" id="phase0">
                 <i class="fas fa-times close" onClick="delete_row(this)"></i>
                 <div>
-                    <label for="start_time">Start Time:</label>
-                    <input class="time" name="start_time" id="start_time0" type="time" step='1' min="00:00"
-                        max="02:00:00" value="00:00:00" required>
+                    <label for="start_time">Start Tact:</label>
+                    <input class="tact" name="start_time" id="start_time" type="number" required> / 
+                    <input class="tact" name="start_time" id="start_time2" type="number" required>
                 </div>
                 <div>
-                    <label for="end_time">End Time:</label>
-                    <input class="time" name="end_time" id="end_time0" type="time" step='1' min="00:00" max="02:00:00"
-                        value="00:00:00">
+                    <label for="end_time">End Tact:</label>
+                    <input class="tact" name="end_time" id="end_time" type="number"> /
+                    <input class="tact" name="end_time" id="end_time2" type="number">
                 </div>
                 <div>
                     <label for="tact">Tact:</label>
-                    <input class="tact" name="tact" id="tact00" type="number" min="1" max="12"> /
-                    <input class="tact" name="tact" id="tact01" type="number" min="2" max="16">
+                    <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
+                    <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
                 </div>
                 <div>
                     <label for="tempo">Tempo:</label>
@@ -72,19 +72,19 @@
             <div class="phase" id="phase1">
                 <i class="fas fa-times close" onClick="delete_row(this)"></i>
                 <div>
-                    <label for="start_time">Start Time:</label>
-                    <input class="time" name="start_time" id="start_time0" type="time" step='1' min="00:00"
-                        max="02:00:00" value="00:00:00" required>
+                    <label for="start_time">Start Tact:</label>
+                    <input class="tact" name="start_time" id="start_time" type="number" required> / 
+                    <input class="tact" name="start_time" id="start_time2" type="number" required>
                 </div>
                 <div>
-                    <label for="end_time">End Time:</label>
-                    <input class="time" name="end_time" id="end_time0" type="time" step='1' min="00:00" max="02:00:00"
-                        value="00:00:00">
+                    <label for="end_time">End Tact:</label>
+                    <input class="tact" name="end_time" id="end_time" type="number"> /
+                    <input class="tact" name="end_time" id="end_time2" type="number">
                 </div>
                 <div>
                     <label for="tact">Tact:</label>
-                    <input class="tact" name="tact" id="tact00" type="number" min="1" max="12"> /
-                    <input class="tact" name="tact" id="tact01" type="number" min="2" max="16">
+                    <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
+                    <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
                 </div>
                 <div>
                     <label for="tempo">Tempo:</label>
@@ -96,22 +96,22 @@
     </div>
     <div id=tab3 class="tab" style="display: none;">
         <div class="instrument-box">
-            <div class="phase" id="phase1">
+            <div class="phase" id="phase2">
                 <i class="fas fa-times close" onClick="delete_row(this)"></i>
                 <div>
-                    <label for="start_time">Start Time:</label>
-                    <input class="time" name="start_time" id="start_time0" type="time" step='1' min="00:00"
-                        max="02:00:00" value="00:00:00" required>
+                    <label for="start_time">Start Tact:</label>
+                    <input class="tact" name="start_time" id="start_time" type="number" required> / 
+                    <input class="tact" name="start_time" id="start_time2" type="number" required>
                 </div>
                 <div>
-                    <label for="end_time">End Time:</label>
-                    <input class="time" name="end_time" id="end_time0" type="time" step='1' min="00:00" max="02:00:00"
-                        value="00:00:00">
+                    <label for="end_time">End Tact:</label>
+                    <input class="tact" name="end_time" id="end_time" type="number"> /
+                    <input class="tact" name="end_time" id="end_time2" type="number">
                 </div>
                 <div>
                     <label for="tact">Tact:</label>
-                    <input class="tact" name="tact" id="tact00" type="number" min="1" max="12"> /
-                    <input class="tact" name="tact" id="tact01" type="number" min="2" max="16">
+                    <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
+                    <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
                 </div>
                 <div>
                     <label for="tempo">Tempo:</label>
@@ -140,7 +140,7 @@
     }
 
     function duplicate(e) {
-        console.log("duplicate")
+        console.log(e)
         var original = e.parentElement.firstElementChild
         console.log(original)
         var clone = original.cloneNode(true); // "deep" clone
@@ -215,6 +215,62 @@
             player.play();
         }
     }
+
+    document.getElementById('counter-file').addEventListener(
+        'change',
+        changeEvent => {
+            changeEvent.stopPropagation();
+            changeEvent.preventDefault();
+            readJsonFile(changeEvent.target.files[0]);
+        },
+        false
+    );
+
+    function readJsonFile(jsonFile) {
+        var reader = new FileReader();
+        reader.addEventListener('load', (loadEvent) => {
+            try {
+                json = JSON.parse(loadEvent.target.result);
+                console.log(json.instruments.length);
+                for (var i = 0; i < json.instruments.length; i++) {
+                    if (i>0) add_instrument();
+                    console.log(json.instruments[i].ins.length)
+                    var original = document.getElementById('phase'+i);
+                    original.querySelector("#start_time").value=json.instruments[i].ins[0][0];
+                    original.querySelector("#end_time").value=json.instruments[i].outs[0][0];
+                    original.querySelector("#start_time2").value=json.instruments[i].ins[0][1];
+                    original.querySelector("#end_time2").value=json.instruments[i].outs[0][1];
+                    for (var n = 1; n < json.instruments[i].ins.length; n++) {
+                        var clone = original.cloneNode(true);
+                        clone.id = "phase" +i +n; 
+                        var plus = original.parentNode.querySelector('.btn')
+                        original.parentNode.insertBefore(clone, plus);
+                        clone.querySelector("#start_time").value=json.instruments[i].ins[n][0];
+                        clone.querySelector("#start_time2").value=json.instruments[i].ins[n][1];
+                        clone.querySelector("#end_time").value=json.instruments[i].outs[n][0];
+                        clone.querySelector("#end_time2").value=json.instruments[i].outs[n][1];
+                        console.log(json.instruments[i].ins[n][0])
+                    }
+                }
+                var tempo = document.querySelectorAll('input[name="tempo"]')
+                tempo.forEach(function (input) {
+                    input.value = json.tempo;
+                });
+
+                var tacts1 = document.querySelectorAll('input[name="tact1"]')
+                tacts1.forEach(function (input) {
+                    input.value = json.beat[0];
+                });
+                var tacts2 = document.querySelectorAll('input[name="tact2"]')
+                tacts2.forEach(function (input) {
+                    input.value = json.beat[1];
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        });
+        reader.readAsText(jsonFile);
+    } 
 </script>
 
 </html>
