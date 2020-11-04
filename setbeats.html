@@ -6,130 +6,133 @@
     <title>set_beats</title>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
     <header>
         <h1 id="project_name" class="edit" style="cursor: pointer;" contenteditable="true" onfocus="this.select();">
-            Project Name</h1>
-        <!--i class="fas fa-pencil" onclick="edit('project_name')"></i-->
+            Project1</h1>
     </header>
-    <div style="height:120px">
-        <input type="file" id="music-file" class="file" accept="audio/mp3, audio/wav" onChange="load_audio(this)">
-        <label for="music-file" class="btn" style="float:left; margin-left:0; width:42%">
-            <i class="fas fa-music"></i>
-            Select Music File <p id="music-file-name" class="file-name"></p> </label>
-        <input type="file" id="counter-file" class="file">
-        <label for="counter-file" class="btn" style="float:right; margin-right:0; width:42%">
-            <i class="far fa-file"></i>
-            Select Counter File <p id="counter-file-name" class="file-name"></p> </label>
-    </div>
-    <div style="height:60px">
-        <div class="bar">
-            <a class="instrument active" id="instrument1" contenteditable="true" onclick="openTab(this, 'tab1')"
-                onfocus="this.select();" onclick="edit('instrument1')">Instrument 1
-                <!--i class="fas fa-pencil" class="edit" onCLick="edit(instrument1)"></i--></a>
-            <a class="instrument" id="instrument2" contenteditable="true" style="display: none;"
-                onclick="openTab(this, 'tab2')">Instrument 2
-            </a>
-            <a class="instrument" id="instrument3" contenteditable="true" style="display: none; "
-                onclick="openTab(this, 'tab2')">Instrument 3
-            </a>
+    <form id="form">
+        <div style="height:120px">
+            <input type="file" id="music-file" class="file" accept="audio/mp3, audio/wav" onChange="load_audio(this)">
+            <label for="music-file" class="btn" style="float:left; margin-left:0; width:42%">
+                <i class="fas fa-music"></i>
+                Select Music File <p id="music-file-name" class="file-name"></p> </label>
+            <input type="file" id="counter-file" class="file">
+            <label for="counter-file" class="btn" style="float:right; margin-right:0; width:42%">
+                <i class="far fa-file"></i>
+                Select Counter File <p id="counter-file-name" class="file-name"></p> </label>
+        </div>
+        <div style="height:60px">
+            <div class="bar">
+                <a class="instrument active" id="instrument1" contenteditable="true" onclick="openTab(this, 'tab1')"
+                    onfocus="this.select();" onclick="edit('instrument1')">Instrument 1
+                </a>
+                <a class="instrument" id="instrument2" contenteditable="true" style="display: none;"
+                    onclick="openTab(this, 'tab2')">Instrument 2
+                </a>
+                <a class="instrument" id="instrument3" contenteditable="true" style="display: none; "
+                    onclick="openTab(this, 'tab2')">Instrument 3
+                </a>
+
+            </div>
+            <button class="btn plus" id="add_phase" style="margin: 0; float: right;" onClick="add_instrument()"><i
+                    class="fas fa-plus"></i></button>
+        </div>
+        <div id=tab1 class="tab" style="display: block;">
+            <div class="instrument-box">
+                <div class="phase" id="phase0">
+                    <i class="fas fa-times close" onClick="delete_row(this)"></i>
+                    <div>
+                        <label for="start_time">Start Tact:</label>
+                        <input class="tact" name="start_time" id="start_time" type="number" required> /
+                        <input class="tact" name="start_time" id="start_time2" type="number" required>
+                    </div>
+                    <div>
+                        <label for="end_time">End Tact:</label>
+                        <input class="tact" name="end_time" id="end_time" type="number"> /
+                        <input class="tact" name="end_time" id="end_time2" type="number">
+                    </div>
+                    <div>
+                        <label for="tact">Tact:</label>
+                        <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
+                        <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
+                    </div>
+                    <div>
+                        <label for="tempo">Tempo:</label>
+                        <input class="tempo" name="tempo" id="tempo" type="number" min="50" max="150"> bpm
+                    </div>
+                </div>
+                <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+        <div id=tab2 class="tab" style="display: none;">
+            <div class="instrument-box">
+                <div class="phase" id="phase1">
+                    <i class="fas fa-times close" onClick="delete_row(this)"></i>
+                    <div>
+                        <label for="start_time">Start Tact:</label>
+                        <input class="tact" name="start_time" id="start_time" type="number" required> /
+                        <input class="tact" name="start_time" id="start_time2" type="number" required>
+                    </div>
+                    <div>
+                        <label for="end_time">End Tact:</label>
+                        <input class="tact" name="end_time" id="end_time" type="number"> /
+                        <input class="tact" name="end_time" id="end_time2" type="number">
+                    </div>
+                    <div>
+                        <label for="tact">Tact:</label>
+                        <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
+                        <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
+                    </div>
+                    <div>
+                        <label for="tempo">Tempo:</label>
+                        <input class="tempo" name="tempo" id="tempo" type="number" min="50" max="150"> bpm
+                    </div>
+                </div>
+                <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+        <div id=tab3 class="tab" style="display: none;">
+            <div class="instrument-box">
+                <div class="phase" id="phase2">
+                    <i class="fas fa-times close" onClick="delete_row(this)"></i>
+                    <div>
+                        <label for="start_time">Start Tact:</label>
+                        <input class="tact" name="start_time" id="start_time" type="number" required> /
+                        <input class="tact" name="start_time" id="start_time2" type="number" required>
+                    </div>
+                    <div>
+                        <label for="end_time">End Tact:</label>
+                        <input class="tact" name="end_time" id="end_time" type="number"> /
+                        <input class="tact" name="end_time" id="end_time2" type="number">
+                    </div>
+                    <div>
+                        <label for="tact">Tact:</label>
+                        <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
+                        <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
+                    </div>
+                    <div>
+                        <label for="tempo">Tempo:</label>
+                        <input class="tempo" name="tempo" id="tempo" type="number" min="50" max="150"> bpm
+                    </div>
+                </div>
+                <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
 
         </div>
-        <button class="btn plus" id="add_phase" style="margin: 0; float: right;" onClick="add_instrument()"><i
-                class="fas fa-plus"></i></button>
-    </div>
-    <div id=tab1 class="tab" style="display: block;">
-        <div class="instrument-box">
-            <div class="phase" id="phase0">
-                <i class="fas fa-times close" onClick="delete_row(this)"></i>
-                <div>
-                    <label for="start_time">Start Tact:</label>
-                    <input class="tact" name="start_time" id="start_time" type="number" required> / 
-                    <input class="tact" name="start_time" id="start_time2" type="number" required>
-                </div>
-                <div>
-                    <label for="end_time">End Tact:</label>
-                    <input class="tact" name="end_time" id="end_time" type="number"> /
-                    <input class="tact" name="end_time" id="end_time2" type="number">
-                </div>
-                <div>
-                    <label for="tact">Tact:</label>
-                    <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
-                    <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
-                </div>
-                <div>
-                    <label for="tempo">Tempo:</label>
-                    <input class="tempo" name="tempo" id="tact0" type="number" min="50" max="150"> bpm
-                </div>
-            </div>
-            <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
-        </div>
-    </div>
-    <div id=tab2 class="tab" style="display: none;">
-        <div class="instrument-box">
-            <div class="phase" id="phase1">
-                <i class="fas fa-times close" onClick="delete_row(this)"></i>
-                <div>
-                    <label for="start_time">Start Tact:</label>
-                    <input class="tact" name="start_time" id="start_time" type="number" required> / 
-                    <input class="tact" name="start_time" id="start_time2" type="number" required>
-                </div>
-                <div>
-                    <label for="end_time">End Tact:</label>
-                    <input class="tact" name="end_time" id="end_time" type="number"> /
-                    <input class="tact" name="end_time" id="end_time2" type="number">
-                </div>
-                <div>
-                    <label for="tact">Tact:</label>
-                    <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
-                    <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
-                </div>
-                <div>
-                    <label for="tempo">Tempo:</label>
-                    <input class="tempo" name="tempo" id="tact0" type="number" min="50" max="150"> bpm
-                </div>
-            </div>
-            <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
-        </div>
-    </div>
-    <div id=tab3 class="tab" style="display: none;">
-        <div class="instrument-box">
-            <div class="phase" id="phase2">
-                <i class="fas fa-times close" onClick="delete_row(this)"></i>
-                <div>
-                    <label for="start_time">Start Tact:</label>
-                    <input class="tact" name="start_time" id="start_time" type="number" required> / 
-                    <input class="tact" name="start_time" id="start_time2" type="number" required>
-                </div>
-                <div>
-                    <label for="end_time">End Tact:</label>
-                    <input class="tact" name="end_time" id="end_time" type="number"> /
-                    <input class="tact" name="end_time" id="end_time2" type="number">
-                </div>
-                <div>
-                    <label for="tact">Tact:</label>
-                    <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
-                    <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
-                </div>
-                <div>
-                    <label for="tempo">Tempo:</label>
-                    <input class="tempo" name="tempo" id="tact0" type="number" min="50" max="150"> bpm
-                </div>
-            </div>
-            <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
-        </div>
-    </div>
-
-    </div>
-    <a class="btn btn-border" href="#" id="save" style="float:left; margin-left:0; width:42%">Save <i
+    </form>
+    <a class="btn btn-border" href="#" id="save" onClick="save()" style="float:left; margin-left:0; width:42%">Save <i
             class="fas fa-folder"></i></a>
     <a class="btn" href="#" id="start" onClick="play()" style="float:right; margin-right:0; width:42%">Start <i
             class="fas fa-chevron-right"></i></a>
     <audio id="player" controls></audio>
 </body>
 
+<script src="src/require.js"></script>
 <script>
     var i = 1;
 
@@ -140,9 +143,7 @@
     }
 
     function duplicate(e) {
-        console.log(e)
         var original = e.parentElement.firstElementChild
-        console.log(original)
         var clone = original.cloneNode(true); // "deep" clone
         clone.id = "phase" + ++i; // there can only be one element with an ID
         //clone.onclick = duplicate; // event handlers are not cloned
@@ -150,8 +151,6 @@
     }
 
     function delete_row(e) {
-
-        console.log(e.parentNode.id)
         if (e.parentNode.id != "phase1") {
             e.parentNode.parentNode.removeChild(e.parentNode);
             i--;
@@ -164,7 +163,6 @@
     }
 
     function openTab(evt, instrument) {
-        console.log("tab")
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tab");
         for (i = 0; i < tabcontent.length; i++) {
@@ -231,25 +229,25 @@
         reader.addEventListener('load', (loadEvent) => {
             try {
                 json = JSON.parse(loadEvent.target.result);
-                console.log(json.instruments.length);
+                document.getElementById("project_name").innerHTML = json.track_name;
+
                 for (var i = 0; i < json.instruments.length; i++) {
-                    if (i>0) add_instrument();
-                    console.log(json.instruments[i].ins.length)
-                    var original = document.getElementById('phase'+i);
-                    original.querySelector("#start_time").value=json.instruments[i].ins[0][0];
-                    original.querySelector("#end_time").value=json.instruments[i].outs[0][0];
-                    original.querySelector("#start_time2").value=json.instruments[i].ins[0][1];
-                    original.querySelector("#end_time2").value=json.instruments[i].outs[0][1];
+                    if (i > 0) add_instrument();
+                    var original = document.getElementById('phase' + i);
+                    original.querySelector("#start_time").value = json.instruments[i].ins[0][0];
+                    original.querySelector("#end_time").value = json.instruments[i].outs[0][0];
+                    original.querySelector("#start_time2").value = json.instruments[i].ins[0][1];
+                    original.querySelector("#end_time2").value = json.instruments[i].outs[0][1];
+
                     for (var n = 1; n < json.instruments[i].ins.length; n++) {
                         var clone = original.cloneNode(true);
-                        clone.id = "phase" +i +n; 
+                        clone.id = "phase" + i + n;
                         var plus = original.parentNode.querySelector('.btn')
                         original.parentNode.insertBefore(clone, plus);
-                        clone.querySelector("#start_time").value=json.instruments[i].ins[n][0];
-                        clone.querySelector("#start_time2").value=json.instruments[i].ins[n][1];
-                        clone.querySelector("#end_time").value=json.instruments[i].outs[n][0];
-                        clone.querySelector("#end_time2").value=json.instruments[i].outs[n][1];
-                        console.log(json.instruments[i].ins[n][0])
+                        clone.querySelector("#start_time").value = json.instruments[i].ins[n][0];
+                        clone.querySelector("#start_time2").value = json.instruments[i].ins[n][1];
+                        clone.querySelector("#end_time").value = json.instruments[i].outs[n][0];
+                        clone.querySelector("#end_time2").value = json.instruments[i].outs[n][1];
                     }
                 }
                 var tempo = document.querySelectorAll('input[name="tempo"]')
@@ -270,7 +268,70 @@
             }
         });
         reader.readAsText(jsonFile);
-    } 
+    }
+
+    function save() {
+        var name = document.getElementById("project_name").innerHTML;
+        var tempo = document.getElementById("tempo").value;
+        var tact1 = document.getElementById("tact00").value;
+        var tact2 = document.getElementById("tact00").value;
+        var instrument1 = document.getElementById("instrument1");
+        var instrument2 = document.getElementById("instrument2");
+
+        var phases1 = document.getElementById("tab1").querySelectorAll(".phase");
+        var phases2 = document.getElementById("tab2").querySelectorAll(".phase");
+
+        var ins1 = [];
+        var outs1 = [];
+        for (var i = 0; i < phases1.length; i++) {
+            ins1.push([parseInt(phases1[i].querySelector("#start_time").value),
+            parseInt(phases1[i].querySelector("#start_time2").value)]);
+            outs1.push([parseInt(phases1[i].querySelector("#end_time").value),
+            parseInt(phases1[i].querySelector("#end_time2").value)]);
+        }
+
+        var ins2 = [];
+        var outs2 = [];
+        for (var i = 0; i < phases2.length; i++) {
+            ins2.push([parseInt(phases2[i].querySelector("#start_time").value),
+            parseInt(phases2[i].querySelector("#start_time2").value)]);
+            outs2.push([parseInt(phases2[i].querySelector("#end_time").value),
+            parseInt(phases2[i].querySelector("#end_time2").value)]);
+        }
+
+        var json = {
+            "track_name": name,
+            "track_artist": "",
+            "length": "",
+            "tempo": parseInt(tempo),
+            "beat": [parseInt(tact1), parseInt(tact2)],
+            "key": "",
+            "instruments": [
+                {
+                    "insturment_id": 1,
+                    "insturment_description": instrument1.innerHTML,
+                    "ins": ins1,
+                    "outs": outs1
+                },
+                {
+                    "insturment_id": 2,
+                    "insturment_description": instrument2.innerHTML,
+                    "ins": ins2,
+                    "outs": outs2
+                }
+            ]
+        }
+
+        var jsonString = JSON.stringify(json);
+        localStorage.setItem(name, jsonString);
+    }
+
+    function play() {
+        save();
+        pr1 = localStorage.getItem(document.getElementById("project_name").innerHTML);
+        console.log(pr1);
+    }
+
 </script>
 
 </html>
