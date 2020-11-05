@@ -1,0 +1,22 @@
+{
+	"track_name": "Pachelbel Kanon in D",
+	"track_artist": "Bao Long Kong",
+	"length": 21,
+	"tempo": 80,
+	"beat": [4, 4],
+	"key": "D",
+	"instruments": [
+		{
+			"insturment_id": 1,
+			"insturment_description": "Piano",
+			"ins": [[5, 1], [17, 1]],
+			"outs": [[13, 1], [21, 1]]
+		},
+		{
+			"insturment_id": 2,
+			"insturment_description": "Percussion",
+			"ins": [[5, 1], [13, 1], [21, 1]],
+			"outs": [[9, 1], [19, 1], [22, 0]]
+		}
+	]
+}

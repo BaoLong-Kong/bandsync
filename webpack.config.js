@@ -2,6 +2,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { JavascriptModulesPlugin } = require('webpack');
 
 module.exports = {
   entry: './src/settings.js',
@@ -14,6 +15,17 @@ module.exports = {
     compress: true,
     port: 9000
   },
+  // module: {
+  //   rules: [
+  //     {
+  //       test: /\.css$/,
+  //       use: [
+  //         MiniCssExtractPlugin.loader,
+  //         'css-loader'
+  //       ]
+  //     }
+  //   ]
+  // },
   plugins: [
     new HtmlWebpackPlugin({
         title: 'Custom template',
@@ -24,6 +36,6 @@ module.exports = {
       filename: 'settings.html',
       template: 'settings.html'
     }),
-    new MiniCssExtractPlugin(),
+    // new MiniCssExtractPlugin(),
   ]
 };
