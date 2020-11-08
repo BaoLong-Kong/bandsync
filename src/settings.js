@@ -1,4 +1,4 @@
-import tactJs from 'tact-js';
+// import tactJs from 'tact-js';
 
 const btn_test = document.getElementById("test");
 const btn_multitest = document.getElementById("multitest");
@@ -27,36 +27,34 @@ var durationMillis = 200;
 
 var tempo;
 var beat;
+var bps;
 var instrument1Ins;
 var instrument1Outs;
 var instrument2Ins;
 var instrument2Outs;
 
-tactJs.addListener(function(msg) {
-    if (msg.status === 'Connected') {
-      // console.log('connected');
-    } else if (msg.status === 'Disconnected') {
+// tactJs.addListener(function(msg) {
+//     if (msg.status === 'Connected') {
+//       // console.log('connected');
+//     } else if (msg.status === 'Disconnected') {
   
-    } else if (msg.status === 'Connecting') {
-      // 
-    }
-});
+//     } else if (msg.status === 'Connecting') {
+//       // 
+//     }
+// });
 
 btn_test.addEventListener("click", test);
 btn_multitest.addEventListener("click", multitest);
 
 //errorcodes: 0 - success, 2 - connection not established
-function test() {
-  console.log(tactJs.submitDot(key, position, points, durationMillis));
-}
+// function test() {
+//   console.log(tactJs.submitDot(key, position, points, durationMillis));
+// }
 
-function multitest() {
-  // for (var i = 0; i < 3; i++) {
-  //   setTimeout(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, 1000);
-  // }
-  var interval = setInterval(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, 1000);
-  setTimeout(() => {clearInterval(interval)}, 4000);
-}
+// function multitest() {
+//   var interval = setInterval(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, 1000);
+//   setTimeout(() => {clearInterval(interval)}, 4000);
+// }
 
 inp_songtest.addEventListener("change", function() {
   var reader = new FileReader();
@@ -65,13 +63,13 @@ inp_songtest.addEventListener("change", function() {
     var result = JSON.parse(reader.result);
     tempo = result.tempo;
     beat = result.beat;
-    instrument1Ins = result.instruments[0].ins;
-    instrument2Ins = result.instruments[1].ins;
-    instrument1Outs = result.instruments[0].ins;
-    instrument2Outs = result.instruments[1].ins;
+    bps = 60 / tempo;
+    instrument1Ins = calculatecounts(result.instruments[0].ins);
+    instrument2Ins = calculatecounts(result.instruments[1].ins);
+    instrument1Outs = calculatecounts(result.instruments[0].outs);
+    instrument2Outs = calculatecounts(result.instruments[1].outs);
 
     console.log(result);
-    console.log(beat);
     console.log(instrument1Ins);
   });
 
@@ -104,5 +102,40 @@ function audiotest({
 btn_songtest.addEventListener("click", songtest);
 
 function songtest() {
-  setInterval(() => {aud_player.play()}, 4000);
+  for (let i = 0; i < instrument1Ins.length; i++) {
+    setTimeout(() => {countin_out()}, instrument1Ins[i])
+  }
+  for (let i = 0; i < instrument1Outs.length; i++) {
+    setTimeout(() => {countin_out()}, instrument1Outs[i])
+  }
+  for (let i = 0; i < instrument2Ins.length; i++) {
+    setTimeout(() => {countin_out()}, instrument2Ins[i])
+  }
+  for (let i = 0; i < instrument2Outs.length; i++) {
+    setTimeout(() => {countin_out()}, instrument2Outs[i])
+  }
+  setTimeout(() => {startsong()}, (bps * beat[0]));
+}
+
+function startsong() {
+  aud_player.play();
+}
+
+function calculatecounts(ins_outs) {
+  var timings = new Array(ins_outs.length);
+  for (let i = 0; i < ins_outs.length; i++) {
+    timings[i] = calculatecountms(ins_outs[i]);
+  }
+  return timings;
+}
+
+function calculatecountms(in_out) {
+  in_out[0] -= 2;
+  return ((in_out[0] * beat[0] * bps + (--in_out[1] * bps) - bps) * 1000);
+}
+
+function countin_out() {
+  // var interval = setInterval(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, (bps * 1000));
+  var interval = setInterval(() => {console.log("Beat")}, (bps * 1000));
+  setTimeout(() => {clearInterval(interval)}, ((bps * 1000) * beat[0]));
 }
