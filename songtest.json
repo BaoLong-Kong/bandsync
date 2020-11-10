@@ -16,7 +16,7 @@
 			"insturment_id": 2,
 			"insturment_description": "Percussion",
 			"ins": [[5, 1], [13, 1], [21, 1]],
-			"outs": [[9, 1], [19, 1], [22, 0]]
+			"outs": [[9, 1], [17, 1]]
 		}
 	]
 }

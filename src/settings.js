@@ -8,7 +8,8 @@ const aud_player = document.getElementById("player");
 const btn_songtest = document.getElementById("songtest");
 
 var key = 'dot';
-var position = 'ForearmL';
+var positionL = 'ForearmL';
+var positionR = 'ForearmR';
 var points = [
   {
     index: 0,
@@ -71,6 +72,9 @@ inp_songtest.addEventListener("change", function() {
 
     console.log(result);
     console.log(instrument1Ins);
+    console.log(instrument1Outs);
+    console.log(instrument2Ins);
+    console.log(instrument2Outs)
   });
 
   reader.readAsText(inp_songtest.files[0]);
@@ -102,17 +106,17 @@ function audiotest({
 btn_songtest.addEventListener("click", songtest);
 
 function songtest() {
-  for (let i = 0; i < instrument1Ins.length; i++) {
-    setTimeout(() => {countin_out()}, instrument1Ins[i])
-  }
-  for (let i = 0; i < instrument1Outs.length; i++) {
-    setTimeout(() => {countin_out()}, instrument1Outs[i])
-  }
+  // for (let i = 0; i < instrument1Ins.length; i++) {
+  //   setTimeout(() => {countin_out(positionL)}, instrument1Ins[i])
+  // }
+  // for (let i = 0; i < instrument1Outs.length; i++) {
+  //   setTimeout(() => {countin_out(positionL)}, instrument1Outs[i])
+  // }
   for (let i = 0; i < instrument2Ins.length; i++) {
-    setTimeout(() => {countin_out()}, instrument2Ins[i])
+    setTimeout(() => {countin_out(positionR)}, instrument2Ins[i])
   }
   for (let i = 0; i < instrument2Outs.length; i++) {
-    setTimeout(() => {countin_out()}, instrument2Outs[i])
+    setTimeout(() => {countin_out(positionR)}, instrument2Outs[i])
   }
   setTimeout(() => {startsong()}, (bps * beat[0]));
 }
@@ -134,8 +138,8 @@ function calculatecountms(in_out) {
   return ((in_out[0] * beat[0] * bps + (--in_out[1] * bps) - bps) * 1000);
 }
 
-function countin_out() {
+function countin_out(position) {
   // var interval = setInterval(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, (bps * 1000));
-  var interval = setInterval(() => {console.log("Beat")}, (bps * 1000));
+  var interval = setInterval(() => {console.log("Beat " + position)}, (bps * 1000));
   setTimeout(() => {clearInterval(interval)}, ((bps * 1000) * beat[0]));
 }
