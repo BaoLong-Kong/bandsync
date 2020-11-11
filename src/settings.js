@@ -99,24 +99,22 @@ function audiotest({
 btn_songtest.addEventListener("click", songtest);
 
 function songtest() {
-  test2();
   for (let i = 0; i < instrument1Ins.length; i++) {
     setTimeout(() => {countin_out(positionL)}, instrument1Ins[i])
   }
   for (let i = 0; i < instrument1Outs.length; i++) {
     setTimeout(() => {countin_out(positionL)}, instrument1Outs[i])
   }
-  setTimeout(() => {startsong()}, (bps * beat[0]));
-}
-
-function test2() {
   for (let i = 0; i < instrument2Ins.length; i++) {
     setTimeout(() => {countin_out(positionR)}, instrument2Ins[i])
   }
   for (let i = 0; i < instrument2Outs.length; i++) {
     setTimeout(() => {countin_out(positionR)}, instrument2Outs[i])
   }
+  setTimeout(() => {startsong()}, (bps * beat[0] * 1000));
 }
+
+
 
 function startsong() {
   aud_player.play();
@@ -131,7 +129,7 @@ function calculatecounts(ins_outs) {
 }
 
 function calculatecountms(in_out) {
-  in_out[0] -= 2;
+  in_out[0]--;
   return ((in_out[0] * beat[0] * bps + (--in_out[1] * bps) - bps) * 1000);
 }
 

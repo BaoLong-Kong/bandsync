@@ -9,14 +9,14 @@
 		{
 			"insturment_id": 1,
 			"insturment_description": "Piano",
-			"ins": [[5, 1], [17, 1]],
-			"outs": [[13, 1], [21, 1]]
+			"ins": [[5, 1], [21, 1]],
+			"outs": [[13, 1], [29, 1]]
 		},
 		{
 			"insturment_id": 2,
 			"insturment_description": "Percussion",
-			"ins": [[5, 1], [13, 1], [21, 1]],
-			"outs": [[9, 1], [17, 1]]
+			"ins": [[9, 1], [25, 1]],
+			"outs": [[17, 1]]
 		}
 	]
 }

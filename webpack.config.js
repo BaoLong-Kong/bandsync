@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { JavascriptModulesPlugin } = require('webpack');
 
 module.exports = {
+  mode: 'development',
   entry: './src/settings.js',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -15,6 +16,10 @@ module.exports = {
     compress: true,
     port: 9000
   },
+  optimization: {
+    minimize: false
+  },
+  devtool: 'inline-source-map',
   // module: {
   //   rules: [
   //     {
