@@ -127,12 +127,12 @@
     </form>
     <a class="btn btn-border" href="#" id="save" onClick="save()" style="float:left; margin-left:0; width:42%">Save <i
             class="fas fa-folder"></i></a>
-    <a class="btn" href="#" id="start" onClick="play()" style="float:right; margin-right:0; width:42%">Start <i
+    <a class="btn" href="#" id="start" style="float:right; margin-right:0; width:42%">Start <i
             class="fas fa-chevron-right"></i></a>
     <audio id="player" controls></audio>
 </body>
 
-<script src="src/require.js"></script>
+<script src="src/setbeats.js"></script>
 <script>
     var i = 1;
 
@@ -206,14 +206,6 @@
         player.src = URL.createObjectURL(e.files[0]);
     }
 
-    function play() {
-        if (document.getElementById("music-file").files[0]) {
-            var player = document.getElementById('player');
-            player.style.display = "block";
-            player.play();
-        }
-    }
-
     document.getElementById('counter-file').addEventListener(
         'change',
         changeEvent => {
@@ -269,69 +261,6 @@
         });
         reader.readAsText(jsonFile);
     }
-
-    function save() {
-        var name = document.getElementById("project_name").innerHTML;
-        var tempo = document.getElementById("tempo").value;
-        var tact1 = document.getElementById("tact00").value;
-        var tact2 = document.getElementById("tact00").value;
-        var instrument1 = document.getElementById("instrument1");
-        var instrument2 = document.getElementById("instrument2");
-
-        var phases1 = document.getElementById("tab1").querySelectorAll(".phase");
-        var phases2 = document.getElementById("tab2").querySelectorAll(".phase");
-
-        var ins1 = [];
-        var outs1 = [];
-        for (var i = 0; i < phases1.length; i++) {
-            ins1.push([parseInt(phases1[i].querySelector("#start_time").value),
-            parseInt(phases1[i].querySelector("#start_time2").value)]);
-            outs1.push([parseInt(phases1[i].querySelector("#end_time").value),
-            parseInt(phases1[i].querySelector("#end_time2").value)]);
-        }
-
-        var ins2 = [];
-        var outs2 = [];
-        for (var i = 0; i < phases2.length; i++) {
-            ins2.push([parseInt(phases2[i].querySelector("#start_time").value),
-            parseInt(phases2[i].querySelector("#start_time2").value)]);
-            outs2.push([parseInt(phases2[i].querySelector("#end_time").value),
-            parseInt(phases2[i].querySelector("#end_time2").value)]);
-        }
-
-        var json = {
-            "track_name": name,
-            "track_artist": "",
-            "length": "",
-            "tempo": parseInt(tempo),
-            "beat": [parseInt(tact1), parseInt(tact2)],
-            "key": "",
-            "instruments": [
-                {
-                    "insturment_id": 1,
-                    "insturment_description": instrument1.innerHTML,
-                    "ins": ins1,
-                    "outs": outs1
-                },
-                {
-                    "insturment_id": 2,
-                    "insturment_description": instrument2.innerHTML,
-                    "ins": ins2,
-                    "outs": outs2
-                }
-            ]
-        }
-
-        var jsonString = JSON.stringify(json);
-        localStorage.setItem(name, jsonString);
-    }
-
-    function play() {
-        save();
-        pr1 = localStorage.getItem(document.getElementById("project_name").innerHTML);
-        console.log(pr1);
-    }
-
 </script>
 
 </html>
