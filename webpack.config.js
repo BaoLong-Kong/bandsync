@@ -11,6 +11,12 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: 'settings_bundle.js'
   },
+  mode: 'development',
+  entry: './src/setbeats.js',
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: 'setbeats_bundle.js'
+  },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
@@ -40,6 +46,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'settings.html',
       template: 'settings.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'setbeats.html',
+      template: 'setbeats.html'
     }),
     // new MiniCssExtractPlugin(),
   ]

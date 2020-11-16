@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>set_beats</title>
-    <link rel="stylesheet" href="src/stylesheet.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 </head>
@@ -20,7 +19,7 @@
             <label for="music-file" class="btn" style="float:left; margin-left:0; width:42%">
                 <i class="fas fa-music"></i>
                 Select Music File <p id="music-file-name" class="file-name"></p> </label>
-            <input type="file" id="counter-file" class="file">
+            <input type="file" id="counter-file" class="file" accept=".json">
             <label for="counter-file" class="btn" style="float:right; margin-right:0; width:42%">
                 <i class="far fa-file"></i>
                 Select Counter File <p id="counter-file-name" class="file-name"></p> </label>
@@ -125,7 +124,7 @@
 
         </div>
     </form>
-    <a class="btn btn-border" href="#" id="save" onClick="save()" style="float:left; margin-left:0; width:42%">Save <i
+    <a class="btn btn-border" href="#" id="save" style="float:left; margin-left:0; width:42%">Save <i
             class="fas fa-folder"></i></a>
     <a class="btn" href="#" id="start" style="float:right; margin-right:0; width:42%">Start <i
             class="fas fa-chevron-right"></i></a>
