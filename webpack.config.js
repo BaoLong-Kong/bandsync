@@ -20,22 +20,22 @@ module.exports = {
     minimize: false
   },
   devtool: 'inline-source-map',
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.css$/,
-  //       use: [
-  //         MiniCssExtractPlugin.loader,
-  //         'css-loader'
-  //       ]
-  //     }
-  //   ]
-  // },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
-        title: 'Custom template',
-        // Load a custom template (lodash by default)
-        template: 'index.html'
+      title: 'Custom template',
+      // Load a custom template (lodash by default)
+      template: 'index.html'
     }),
     new HtmlWebpackPlugin({
       filename: 'settings.html',

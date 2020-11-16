@@ -1,4 +1,5 @@
 import tactJs from 'tact-js';
+import "./stylesheet.css";
 
 const btn_test = document.getElementById("test");
 const btn_multitest = document.getElementById("multitest");
