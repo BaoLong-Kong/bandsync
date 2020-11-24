@@ -6,16 +6,14 @@ const { JavascriptModulesPlugin } = require('webpack');
 
 module.exports = {
   mode: 'development',
-  entry: './src/settings.js',
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'settings_bundle.js'
+  entry: {
+    settings: './src/settings.js',
+    setbeats: './src/setbeats.js'
   },
-  mode: 'development',
-  entry: './src/setbeats.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'setbeats_bundle.js'
+    filename: '[name]_bundle.js',
+    
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
@@ -23,7 +21,10 @@ module.exports = {
     port: 9000
   },
   optimization: {
-    minimize: false
+    minimize: false,
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   devtool: 'inline-source-map',
   module: {
@@ -41,15 +42,20 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Custom template',
       // Load a custom template (lodash by default)
-      template: 'index.html'
+      template: 'index.html',
+      inject: true,
     }),
     new HtmlWebpackPlugin({
       filename: 'settings.html',
-      template: 'settings.html'
+      template: 'settings.html',
+      inject: true,
+      chunks: ['settings'],
     }),
     new HtmlWebpackPlugin({
       filename: 'setbeats.html',
-      template: 'setbeats.html'
+      template: 'setbeats.html',
+      inject: true,
+      chunks: ['setbeats']
     }),
     // new MiniCssExtractPlugin(),
   ]
