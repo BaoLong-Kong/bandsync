@@ -73,7 +73,7 @@ function audiotest({
   aud_player.src = urlObj;
 }
 
-btn_songtest.addEventListener("click", play);
+btn_songtest.addEventListener("click", songtest);
 
 function play() {
   console.log("play");
@@ -119,7 +119,7 @@ function songtest() {
   for (let i = 0; i < instrument2Outs.length; i++) {
     setTimeout(() => { countin_out(positionR) }, instrument2Outs[i])
   }
-  setTimeout(() => { startsong() }, (bps * beat[0] * 1000));
+  setTimeout(() => { play() }, (bps * beat[0] * 1000));
 }
 
 function calculatecounts(ins_outs) {
