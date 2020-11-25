@@ -59,6 +59,7 @@ i {
     right: 5px;
     top: 0px;
     z-index: 5;
+    cursor: pointer;
 }
 
 label {
@@ -220,3 +221,29 @@ label {
 
   }
 
+.project{
+    background: #222222;
+    border-radius: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1.5;
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    height: 50px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.trash {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.prname{
+    padding: 15px;
+    float: left;
+}
