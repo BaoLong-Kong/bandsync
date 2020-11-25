@@ -7,6 +7,8 @@ const inp_songtest = document.getElementById("song-upload");
 const inp_audiotest = document.getElementById("audio-upload");
 const aud_player = document.getElementById("player");
 const btn_songtest = document.getElementById("songtest");
+const viz_left = document.getElementById("leftViz");
+const viz_right = document.getElementById("rightViz");
 
 var key = 'dot';
 var positionL = 'ForearmL';
@@ -47,7 +49,7 @@ function test() {
 }
 
 function multitest() {
-  var interval = setInterval(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, 1000);
+  var interval = setInterval(() => {console.log(tactJs.submitDot(key, positionL, points, durationMillis))}, 1000);
   setTimeout(() => {clearInterval(interval)}, 4000);
 }
 
@@ -135,7 +137,17 @@ function calculatecountms(in_out) {
 }
 
 function countin_out(position) {
-  var interval = setInterval(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, (bps * 1000));
-  // var interval = setInterval(() => {console.log("Beat " + position)}, (bps * 1000));
-  setTimeout(() => {clearInterval(interval)}, ((bps * 1000) * beat[0]));
+  var interval2 = setInterval(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, (bps * 1000));
+  var interval = setInterval(() => {flashViz(position)}, (bps * 1000));
+  setTimeout(() => {clearInterval(interval); clearInterval(interval2)}, ((bps * 1000) * beat[0]));
+}
+
+function flashViz(position) {
+  if (position == 'ForearmL') {
+    viz_left.style.backgroundColor = "red";
+    setTimeout(() => {viz_left.style.backgroundColor = "white"}, 200);
+  } else {
+    viz_right.style.backgroundColor = "red";
+    setTimeout(() => {viz_right.style.backgroundColor = "white"}, 200);
+  }
 }

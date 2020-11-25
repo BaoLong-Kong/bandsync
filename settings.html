@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>settings</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style>
+        #vizwrapper {
+            width: 2000 px;
+            overflow: hidden;
+        }
+        #leftViz {
+            float: left;
+        }
+        #rightViz {
+            float: left;
+        }
+        .viz {
+            height: 80px;
+            width: 150px;
+            background-color: white;
+            margin-right: 200px;
+            text-align: center;
+            padding-top: 50px;
+        }
+        span {
+            color: black;
+            font-size: large;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +51,10 @@
     <div>
         <button class="btn" id="songtest">Song-Test</button>
     </div>
-    <!-- <script src="./settings_bundle.js"></script> -->
+    <div id="vizWrapper">
+        <div class="viz" id="leftViz"><span>Left</span></div>
+        <div class="viz" id="rightViz"><span>Right</span></div>
+    </div>
 </body>
 
 </html>
