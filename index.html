@@ -12,10 +12,16 @@
         <h1>Bandsync</h1>
     </header>
     <div></div>
-        <a class="btn" href="setbeats.html" id="set"><i class="fas fa-music"></i> New Project</a>
-        <a class="btn" href="projects.html" id="projects"><i class="fas fa-history"></i> Last Projects</a>
+        <a class="btn" onClick="clear_pr()" href="setbeats.html" id="set"><i class="fas fa-music"></i> New Project</a>
+        <a class="btn" href="lastprojects.html" id="projects"><i class="fas fa-history"></i> Last Projects</a>
         <a class="btn" href="settings.html" id="projects"><i class="fas fa-cog"></i> Settings</a>
     </div>
 </body>
+
+<script>
+    function clear_pr(){
+        sessionStorage.clear();
+    }
+</script>
 
 </html>
