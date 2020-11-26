@@ -1,0 +1,59 @@
++<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bhaptics_test</title>
+    <link rel="stylesheet" href="src/stylesheet.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body style="width: 350px; margin: auto;" onload="loadpr()">
+    <header>
+        <h1>Last Projects</h1>
+    </header>
+    <div>
+        <div class="project" id="project0">
+            <button class="btn plus" style="float: left; margin: 0; width: 50; padding: 8px;" onClick="load_pr(this)">
+                <i class="fas fa-chevron-right"></i></button>
+            <div class="prname">Project</div><i id="delete0" class="fas fa-trash trash" onCLick="delete_pr(this)"></i>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var number = 0
+    function loadpr() {
+        for (var i in localStorage) {
+            if (localStorage[i] > 0) return;
+
+            console.log(localStorage[i]);
+            duplicate(document.getElementById("project0"), i);
+        }
+    }
+
+    function duplicate(e, i) {
+        var json = JSON.parse(localStorage[i]);
+        var name = json.track_name;
+        console.log(i);
+        var original = e
+        var clone = original.cloneNode(true); // "deep" clone
+        clone.id = "project" + ++number; // there can only be one element with an ID
+        console.log(i);
+        original.parentNode.insertBefore(clone, e);
+        document.getElementById('project' + number).querySelector(".prname").innerHTML = i;
+    }
+
+    function delete_pr(e) {
+        e.style.display = "none";
+        e.parentNode.parentNode.removeChild(e.parentNode);
+        localStorage.removeItem(e.parentNode.querySelector(".prname").innerHTML);
+    }
+
+    function load_pr(e){
+        sessionStorage.setItem("laod_pr", e.parentNode.querySelector(".prname").innerHTML)
+        window.location.href = "setbeats.html";
+    }
+</script>

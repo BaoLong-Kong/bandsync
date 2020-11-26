@@ -73,7 +73,7 @@ function audiotest({
   aud_player.src = urlObj;
 }
 
-btn_songtest.addEventListener("click", songtest);
+btn_songtest.addEventListener("click", play);
 
 function play() {
   console.log("play");
@@ -200,6 +200,7 @@ function readdata() {
 btn_save.addEventListener("click", save);
 
 function save() {
+  name=document.getElementById("project_name").innerHTML;
   var jsonString = readdata();
   localStorage.setItem(name, jsonString);
   console.log("saved");
