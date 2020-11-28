@@ -171,10 +171,12 @@ label {
     max-width: 120px;
 }
 
-.tact, .tempo{
+.tact{
     width: 53px;
 }
-
+.tempo{
+    width: 80px;
+}
 
 .file {
     opacity: 0;

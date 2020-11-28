@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>set_beats</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
+    <!--link rel="stylesheet" href="src/stylesheet.css"-->
 </head>
 
 <body onLoad="load_pr()">
@@ -23,6 +23,18 @@
             <label for="counter-file" class="btn" style="float:right; margin-right:0; width:42%">
                 <i class="far fa-file"></i>
                 Select Counter File <p id="counter-file-name" class="file-name"></p> </label>
+        </div>
+        <div class="phase" id="phase" style="margin-bottom: 20px; padding-left: 40px;">
+            <i class="fas fa-times close" onClick="delete_row(this)"></i>
+            <div>
+                <label for="tact">Tact:</label>
+                <input class="tact" name="tact1" id="tact0" type="number" min="1" max="12"> /
+                <input class="tact" name="tact2" id="tact1" type="number" min="2" max="16">
+            </div>
+            <div>
+                <label for="tempo">Tempo:</label>
+                <input class="tempo" name="tempo" id="tempo" type="number" min="50" max="150"> bpm
+            </div>
         </div>
         <div style="height:60px">
             <div class="bar">
@@ -54,15 +66,6 @@
                         <input class="tact" name="end_time" id="end_time" type="number"> /
                         <input class="tact" name="end_time" id="end_time2" type="number">
                     </div>
-                    <div>
-                        <label for="tact">Tact:</label>
-                        <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
-                        <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
-                    </div>
-                    <div>
-                        <label for="tempo">Tempo:</label>
-                        <input class="tempo" name="tempo" id="tempo" type="number" min="50" max="150"> bpm
-                    </div>
                 </div>
                 <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
             </div>
@@ -80,15 +83,6 @@
                         <label for="end_time">End Tact:</label>
                         <input class="tact" name="end_time" id="end_time" type="number"> /
                         <input class="tact" name="end_time" id="end_time2" type="number">
-                    </div>
-                    <div>
-                        <label for="tact">Tact:</label>
-                        <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
-                        <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
-                    </div>
-                    <div>
-                        <label for="tempo">Tempo:</label>
-                        <input class="tempo" name="tempo" id="tempo" type="number" min="50" max="150"> bpm
                     </div>
                 </div>
                 <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
@@ -108,15 +102,6 @@
                         <input class="tact" name="end_time" id="end_time" type="number"> /
                         <input class="tact" name="end_time" id="end_time2" type="number">
                     </div>
-                    <div>
-                        <label for="tact">Tact:</label>
-                        <input class="tact" name="tact1" id="tact00" type="number" min="1" max="12"> /
-                        <input class="tact" name="tact2" id="tact01" type="number" min="2" max="16">
-                    </div>
-                    <div>
-                        <label for="tempo">Tempo:</label>
-                        <input class="tempo" name="tempo" id="tempo" type="number" min="50" max="150"> bpm
-                    </div>
                 </div>
                 <button class="btn plus" id="add_phase" onClick="duplicate(this)"><i class="fas fa-plus"></i></button>
             </div>
@@ -131,7 +116,7 @@
     <audio id="player" controls></audio>
 </body>
 
-<!-- <script src="./setbeats_bundle.js"></script> -->
+<!--script src="src/setbeats.js"></script-->
 <script>
     function load_pr() {
         var pr_name = sessionStorage.getItem("laod_pr");
@@ -260,10 +245,16 @@
                 clone.querySelector("#end_time2").value = json.instruments[i].outs[n][1];
             }
         }
+
+        document.getElementById("tempo").value=json.tempo;
+        document.getElementById("tact0").value=json.beat[0];
+        document.getElementById("tact1").value=json.beat[1];
+        /*
         var tempo = document.querySelectorAll('input[name="tempo"]')
         tempo.forEach(function (input) {
             input.value = json.tempo;
         });
+
 
         var tacts1 = document.querySelectorAll('input[name="tact1"]')
         tacts1.forEach(function (input) {
@@ -273,6 +264,7 @@
         tacts2.forEach(function (input) {
             input.value = json.beat[1];
         });
+        */
     }
 </script>
 
