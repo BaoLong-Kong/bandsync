@@ -144,8 +144,8 @@ function countin_out(position) {
 function readdata() {
   var name = document.getElementById("project_name").innerHTML;
   var tempo = document.getElementById("tempo").value;
-  var tact1 = document.getElementById("tact00").value;
-  var tact2 = document.getElementById("tact00").value;
+  var tact1 = document.getElementById("tact0").value;
+  var tact2 = document.getElementById("tact1").value;
   var instrument1 = document.getElementById("instrument1");
   var instrument2 = document.getElementById("instrument2");
 
