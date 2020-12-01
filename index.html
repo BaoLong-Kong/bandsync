@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bhaptics_test</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <!--link rel="stylesheet" href="src/stylesheet.css"-->
+    <link rel="stylesheet" href="src/stylesheet.css">
 </head>
 
-<body style="width: 350px; margin: auto;">
-    <header>
+<body style="width: 400px; margin: auto;">
+    <img class="logo" src="Logo.png" alt="Bandsync">
+    <!--header>
         <h1>Bandsync</h1>
-    </header>
-    <div></div>
+    </header-->
+    <div class="menu">
         <a class="btn" onClick="clear_pr()" href="setbeats.html" id="set"><i class="fas fa-music"></i> New Project</a>
         <a class="btn" href="lastprojects.html" id="projects"><i class="fas fa-history"></i> Last Projects</a>
         <a class="btn" href="settings.html" id="projects"><i class="fas fa-cog"></i> Settings</a>
@@ -20,7 +21,7 @@
 </body>
 
 <script>
-    function clear_pr(){
+    function clear_pr() {
         sessionStorage.clear();
     }
 </script>

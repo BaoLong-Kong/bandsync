@@ -74,7 +74,7 @@ label {
     text-align: center;
     letter-spacing: 1.5;
     display: block;
-    width: 300px;
+    /*width: 300px;*/
     padding:20px;
     font-size: 18px;
     font-weight: 600;
@@ -248,4 +248,18 @@ label {
 .prname{
     padding: 15px;
     float: left;
+}
+
+
+.menu{
+    width: 360px;
+    display: block;
+    font-size: 18px;
+    padding: 20px;
+}
+
+.logo{
+    width: 400px;
+    margin: 50px auto 0;
+    display: block;
 }
