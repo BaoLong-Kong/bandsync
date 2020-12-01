@@ -74,7 +74,7 @@ label {
     text-align: center;
     letter-spacing: 1.5;
     display: block;
-    /*width: 300px;*/
+    width: 100%;
     padding:20px;
     font-size: 18px;
     font-weight: 600;
@@ -263,3 +263,41 @@ label {
     margin: 50px auto 0;
     display: block;
 }
+
+.slider {
+    -webkit-appearance: none;
+    width: 68%;
+    height: 15px;
+    border-radius: 10px;  
+    border: none;
+    background-image: linear-gradient(to right, #667eea, #8E37D7);
+    outline: none;
+    opacity: 1;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #ffffff;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+  }
+
+  .setting-label{
+    float: left;
+    font-size: 16pt;
+    width: 30%;
+  }
