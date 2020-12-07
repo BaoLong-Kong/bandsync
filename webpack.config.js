@@ -35,6 +35,14 @@ module.exports = {
           'style-loader',
           'css-loader'
         ]
+      },
+      {
+        test: /\.png$/,
+        use: [
+          {
+            loader: 'file-loader',
+          }
+        ]
       }
     ]
   },
@@ -57,6 +65,10 @@ module.exports = {
       inject: true,
       chunks: ['setbeats']
     }),
-    // new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'lastprojects.html',
+      template: 'lastprojects.html',
+      inject: true,
+    })
   ]
 };

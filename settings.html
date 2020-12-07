@@ -7,19 +7,6 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!--link rel="stylesheet" href="src/stylesheet.css"-->
     <style>
-        #vizwrapper {
-            width: 2000 px;
-            overflow: hidden;
-        }
-
-        #leftViz {
-            float: left;
-        }
-
-        #rightViz {
-            float: left;
-        }
-
         .viz {
             height: 80px;
             width: 150px;
@@ -56,9 +43,9 @@
     <div>
         <button class="btn" id="songtest">Song-Test</button>
     </div>
-    <div id="vizWrapper">
-        <div class="viz" id="leftViz"><span>Left</span></div>
-        <div class="viz" id="rightViz"><span>Right</span></div>
+    <div style="width: 400px; display: table">
+        <div class="viz" style="display: table-cell"><span>Left</span></div>
+        <div class="viz" style="display: table-cell"><span>Right</span></div>
     </div>
 
 </body>
