@@ -9,6 +9,7 @@ const aud_player = document.getElementById("player");
 const btn_songtest = document.getElementById("songtest");
 const viz_left = document.getElementById("leftViz");
 const viz_right = document.getElementById("rightViz");
+const powerslider = document.getElementById("powerslider");
 
 var key = 'dot';
 var positionL = 'ForearmL';
@@ -117,7 +118,16 @@ function songtest() {
   setTimeout(() => {startsong()}, (bps * beat[0] * 1000));
 }
 
+powerslider.addEventListener("change", adjustpower);
 
+function adjustpower() {
+  points = [
+    {
+    index: 0,
+    intensity: powerslider.value
+    }
+  ];
+}
 
 function startsong() {
   aud_player.play();
