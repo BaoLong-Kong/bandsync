@@ -175,13 +175,16 @@ function connectTactosy() {
   if (tactJs.submitDot(key, positionL, points, durationMillis) == 2) {
     if (tactJs.submitDot(key, positionL, points, durationMillis) == 0) {
       adjustpower();
+      btn_connect.innerHTML="Check Connection<i class='fas fa-check'></i>";
       return 0;
     } else {
       adjustpower();
+      btn_connect.innerHTML="Check Connection<i class='fas fa-times'></i>";
       return -1;
     }
   } else {
     adjustpower();
+    btn_connect.innerHTML="Check Connection<i class='fas fa-check'></i>";
     return 0;
   }
 }
