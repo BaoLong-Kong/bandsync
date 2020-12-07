@@ -10,6 +10,7 @@ const btn_songtest = document.getElementById("songtest");
 const viz_left = document.getElementById("leftViz");
 const viz_right = document.getElementById("rightViz");
 const powerslider = document.getElementById("powerslider");
+const btn_connect = document.getElementById("connect");
 
 var key = 'dot';
 var positionL = 'ForearmL';
@@ -159,5 +160,28 @@ function flashViz(position) {
   } else {
     viz_right.style.backgroundColor = "red";
     setTimeout(() => {viz_right.style.backgroundColor = "white"}, 200);
+  }
+}
+
+btn_connect.addEventListener("click", connectTactosy);
+
+function connectTactosy() {
+  points = [
+    {
+    index: 0,
+    intensity: 0
+    }
+  ];
+  if (tactJs.submitDot(key, positionL, points, durationMillis) == 2) {
+    if (tactJs.submitDot(key, positionL, points, durationMillis) == 0) {
+      adjustpower();
+      return 0;
+    } else {
+      adjustpower();
+      return -1;
+    }
+  } else {
+    adjustpower();
+    return 0;
   }
 }
