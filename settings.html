@@ -30,7 +30,7 @@
     <div class="menu">
         <div class="setting-label">Power</div>
         <input type="range" min="1" max="100" value="50" class="slider" id="powerslider">
-        <button class="btn" id="connect">Connect</button>
+        <button class="btn" id="connect">Check Connection</button>
         <button class="btn btn-border" id="test">Test <i class="fas fa-chevron-right"></i></button>
     </div>
     <button class="btn" id="multitest">Multi-Test</button>
@@ -50,14 +50,5 @@
     </div>
 
 </body>
-
-<script>
-    var slider = document.getElementById("powerslider");
-
-    slider.oninput = function () {
-        console.log(this.value);
-    }
-
-</script>
 
 </html>
