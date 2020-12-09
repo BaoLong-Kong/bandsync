@@ -82,7 +82,7 @@ function audiotest({
   aud_player.src = urlObj;
 }
 
-btn_songtest.addEventListener("click", play);
+btn_songtest.addEventListener("click", songtest);
 
 function play() {
   console.log("play");
@@ -111,8 +111,6 @@ function play() {
   //console.log(instrument1Outs);
   //console.log(instrument2Ins);
   //console.log(instrument2Outs)
-
-  songtest();
 }
 
 function songtest() {
