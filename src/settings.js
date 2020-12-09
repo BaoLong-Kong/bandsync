@@ -9,18 +9,26 @@ const aud_player = document.getElementById("player");
 const btn_songtest = document.getElementById("songtest");
 const viz_left = document.getElementById("leftViz");
 const viz_right = document.getElementById("rightViz");
-const powerslider = document.getElementById("powerslider");
+const powersliderL = document.getElementById("powersliderL");
+const powersliderR = document.getElementById("powersliderR");
 const btn_connect = document.getElementById("connect");
 
 var key = 'dot';
 var positionL = 'ForearmL';
 var positionR = 'ForearmR';
-var points = [
+var pointsL = [
   {
     index: 0,
     intensity: 50
   }
 ];
+var pointsR = [
+  {
+    index: 0,
+    intensity: 50
+  }
+];
+
 var durationMillis = 200;
 
 var tempo;
@@ -46,12 +54,12 @@ btn_multitest.addEventListener("click", multitest);
 
 // errorcodes: 0 - success, 2 - connection not established
 function test() {
-  console.log(tactJs.submitDot(key, positionL, points, durationMillis));
-  console.log(tactJs.submitDot(key, positionR, points, durationMillis));
+  console.log(tactJs.submitDot(key, positionL, pointsL, durationMillis));
+  console.log(tactJs.submitDot(key, positionR, pointsR, durationMillis));
 }
 
 function multitest() {
-  var interval = setInterval(() => {console.log(tactJs.submitDot(key, positionL, points, durationMillis))}, 1000);
+  var interval = setInterval(() => {console.log(tactJs.submitDot(key, positionL, pointsL, durationMillis))}, 1000);
   setTimeout(() => {clearInterval(interval)}, 4000);
 }
 
@@ -105,27 +113,37 @@ btn_songtest.addEventListener("click", songtest);
 
 function songtest() {
   for (let i = 0; i < instrument1Ins.length; i++) {
-    setTimeout(() => {countin_out(positionL)}, instrument1Ins[i])
+    setTimeout(() => {countin_out(positionL, pointsL)}, instrument1Ins[i])
   }
   for (let i = 0; i < instrument1Outs.length; i++) {
-    setTimeout(() => {countin_out(positionL)}, instrument1Outs[i])
+    setTimeout(() => {countin_out(positionL, pointsL)}, instrument1Outs[i])
   }
   for (let i = 0; i < instrument2Ins.length; i++) {
-    setTimeout(() => {countin_out(positionR)}, instrument2Ins[i])
+    setTimeout(() => {countin_out(positionR, pointsR)}, instrument2Ins[i])
   }
   for (let i = 0; i < instrument2Outs.length; i++) {
-    setTimeout(() => {countin_out(positionR)}, instrument2Outs[i])
+    setTimeout(() => {countin_out(positionR, pointsR)}, instrument2Outs[i])
   }
   setTimeout(() => {startsong()}, (bps * beat[0] * 1000));
 }
 
-powerslider.addEventListener("change", adjustpower);
+powersliderL.addEventListener("change", adjustpowerLeft);
+powersliderR.addEventListener("change", adjustpowerRight);
 
-function adjustpower() {
-  points = [
+function adjustpowerLeft() {
+  pointsL = [
     {
     index: 0,
-    intensity: powerslider.value
+    intensity: powersliderL.value
+    }
+  ];
+}
+
+function adjustpowerRight() {
+  pointsR = [
+    {
+    index: 0,
+    intensity: powersliderR.value
     }
   ];
 }
@@ -147,8 +165,8 @@ function calculatecountms(in_out) {
   return ((in_out[0] * beat[0] * bps + (--in_out[1] * bps) - bps) * 1000);
 }
 
-function countin_out(position) {
-  var interval2 = setInterval(() => {console.log(tactJs.submitDot(key, position, points, durationMillis))}, (bps * 1000));
+function countin_out(position, pointPosition) {
+  var interval2 = setInterval(() => {console.log(tactJs.submitDot(key, position, pointPosition, durationMillis))}, (bps * 1000));
   var interval = setInterval(() => {flashViz(position)}, (bps * 1000));
   setTimeout(() => {clearInterval(interval); clearInterval(interval2)}, ((bps * 1000) * beat[0]));
 }
@@ -166,24 +184,33 @@ function flashViz(position) {
 btn_connect.addEventListener("click", connectTactosy);
 
 function connectTactosy() {
-  points = [
+  pointsL = [
     {
-    index: 0,
-    intensity: 0
+      index: 0,
+      intensity: 0
     }
   ];
-  if (tactJs.submitDot(key, positionL, points, durationMillis) == 2) {
-    if (tactJs.submitDot(key, positionL, points, durationMillis) == 0) {
-      adjustpower();
+  pointsR = [
+    {
+      index: 0,
+      intensity: 0
+    }
+  ];
+  if (tactJs.submitDot(key, positionL, pointsL, durationMillis) == 2) {
+    if (tactJs.submitDot(key, positionL, pointsL, durationMillis) == 0) {
+      adjustpowerLeft();
+      adjustpowerRight();
       btn_connect.innerHTML="Check Connection<i class='fas fa-check'></i>";
       return 0;
     } else {
-      adjustpower();
+      adjustpowerLeft();
+      adjustpowerRight();
       btn_connect.innerHTML="Check Connection<i class='fas fa-times'></i>";
       return -1;
     }
   } else {
-    adjustpower();
+    adjustpowerLeft();
+    adjustpowerRight();
     btn_connect.innerHTML="Check Connection<i class='fas fa-check'></i>";
     return 0;
   }

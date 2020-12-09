@@ -26,6 +26,15 @@ var instrument1Outs;
 var instrument2Ins;
 var instrument2Outs;
 
+tactJs.addListener(function(msg) {
+  if (msg.status === 'Connected') {
+    // console.log('connected');
+  } else if (msg.status === 'Disconnected') {
+
+  } else if (msg.status === 'Connecting') {
+    // 
+  }
+});
 
 inp_songtest.addEventListener("change", function () {
   var reader = new FileReader();
