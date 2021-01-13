@@ -28,12 +28,12 @@ Its part of a student project at HTW-Dresden.
 
 - in the project folder run a `npm run start:dev` (for now) to start serving the app on `localhost:9000`
 - open a browser and go to `localhost:9000`
-- for now you should go to `settings` to find all working tests
-- click test once to connect the tactosy to the webapp, after that you should feel a vibration in the right tactosy upon clicking test
-- to test the song example, first use the left input to upload `pachelbel_test` from the project directory, then upload the songtest.json in the right input
-- the left tactosy is set up for the piano voice, while the right one is set up for the percussion voice
-- you can find the scores in the project folder as `piano_1.pdf` and `drum_1.pdf`
-- clicking `Song-Test` now will start the song and count in the piano and percussion
+- go to `settings` to check the connection of the tactosy
+- once your connection has been confirmed you can navigate to the `new project` page
+- now use the top buttons to upload any song and its associated data for count ins
+- you will see all count ins and outs for all instruments which you can modify and delete/create at will
+- saving and loading projects is also possible with their respective buttons
+- clicking `Start` now will start the song and count in the 2 instruments according to the data
 
 ## Project Details
 ### API
@@ -46,12 +46,7 @@ It will then use several `SetInterval()` functions to sync the count ins/outs to
 
 ### Current State
 
-The Songtest served with webpack does not represent the format and structure of the actual project as of yet.
-The non-functional part of the webapp is developed much further already with loading and saving capabilities.
-To view the further developed webapp without test functionality just open the `index.html` in a browser.
-
-### Future plans
-
-Many more Functions to control when and how the tactosy will be activated are planned.
-
-#### This is a work in progress, which will evolve over many weeks with the endproduct planned to be finished in spring 2021.
+As of now all main functionalities are implemented and ready for use.
+The only problem lies with the inability to let multiple tactosy vibrate at exactly the same time.
+Only the first called gadget will take precedence and actually vibrate.
+This has to do with the js implementation of the bHaptics plugin, not allowing asynchronous signaling.
